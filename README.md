@@ -7,4 +7,4 @@
 ## Installation
 1. `git clone https://github.com/thibmaek/spotify-ripper-docker`
 2. `docker build -t spotify-ripper .`
-3. `docker run -name spotify-ripper -d spotify-ripper`
+3. `docker run -itd -v ~/Music:/data --name spotify-ripper spotify-ripper` (or run `./init.sh`)
