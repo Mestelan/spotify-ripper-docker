@@ -1,3 +1,3 @@
 #! /usr/bin/env bash
 
-docker run -itd -v ~/Music:/data --name spotify-ripper spotify-ripper
+docker run -itd -v /home/$(whoami)/Music:/data --name spotify-ripper spotify-ripper
