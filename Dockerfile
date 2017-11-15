@@ -1,5 +1,4 @@
 FROM debian:stretch-slim
-AUTHOR "Thibault Maekelbergh"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
