@@ -13,6 +13,17 @@ RUN wget https://developer.spotify.com/download/libspotify/libspotify-12.1.51-Li
 	cd libspotify-12.1.51-Linux-x86_64-release && \
 	make install prefix=/usr/local
 
+# Install required tools for support for AAC (M4A container)
+RUN apt-get install pkg-config automake autoconf -y && \
+	wget http://ftp.br.debian.org/debian/pool/non-free/f/fdk-aac/libfdk-aac-dev_0.1.4-2+b1_amd64.deb && \
+	wget http://ftp.br.debian.org/debian/pool/non-free/f/fdk-aac/libfdk-aac1_0.1.4-2+b1_amd64.deb && \
+	dpkg -i libfdk-aac1_0.1.4-2+b1_amd64.deb && dpkg -i libfdk-aac-dev_0.1.4-2+b1_amd64.deb
+
+# Compile libfdk-aac encoder
+RUN wget https://github.com/nu774/fdkaac/archive/v0.6.2.tar.gz && tar xvf v0.6.2.tar.gz && \
+	rm -f v0.6.2.tar.gz && cd fdkaac-0.6.2 && \
+	autoreconf -i && ./configure && make install
+
 # Install a fork of spotify-ripper
 RUN pip install spotify-ripper-morgaroth
 
@@ -20,5 +31,5 @@ RUN pip install spotify-ripper-morgaroth
 VOLUME ["/data"]
 
 # Copy needed files for spotify-ripper
-ADD ./spotify_appkey.key /root/.spotify-ripper/spotify_appkey.key
-ADD ./config.ini /root/.spotify-ripper/config.ini
+COPY ./spotify_appkey.key /root/.spotify-ripper/spotify_appkey.key
+COPY ./config.ini /root/.spotify-ripper/config.ini

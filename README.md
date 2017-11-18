@@ -11,6 +11,9 @@
 3. `docker run -itd -v /home/user/download:/data --name spotify-ripper spotify-ripper` (or run `./init.sh`)
 
 ## Ripping
+Default config will use the libfdk-aac encoder compiled in the image to rip to a M4A container.
+You can use the default MP3 codec by removing `mp4 = True` and resetting `bitrate` to 320 in the config.ini
+
 Once the container is running, use docker exec to start ripping:
 
 ```bash
