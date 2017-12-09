@@ -1,5 +1,7 @@
 FROM debian:stretch-slim
 
+ENV LANG=en_US.UTF-8
+
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Install packages
