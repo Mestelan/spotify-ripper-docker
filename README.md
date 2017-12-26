@@ -10,7 +10,6 @@
 2. Add username & password in the `config.ini` file in this repo
 3. `docker build -t spotify-ripper .`
 4. `docker run -itd -v /home/user/download:/data --name spotify-ripper spotify-ripper`
-5. Check `init.sh` for examples on creating a container and executing a rip
 
 ## Ripping
 Default config will use the liblamemp3 encoder to rip to a MP3 container at 320kbps.
