@@ -6,7 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install packages
 RUN apt-get update -qy && apt-get upgrade -qy
-RUN apt-get install nano wget lame build-essential libffi-dev python-pip python-dev python3-dev python3-pip libffi-dev -y
+RUN apt-get install nano wget lame build-essential python-pip python-dev python3-dev python3-pip libffi-dev libssl-dev -y
 
 # Download libspotify & compile it
 RUN wget https://github.com/mopidy/libspotify-archive/raw/master/libspotify-12.1.51-Linux-x86_64-release.tar.gz && \
@@ -26,6 +26,8 @@ RUN wget https://github.com/nu774/fdkaac/archive/v0.6.2.tar.gz && tar xvf v0.6.2
 	rm -f v0.6.2.tar.gz && cd fdkaac-0.6.2 && \
 	autoreconf -i && ./configure && make install
 
+# manually added because the statement below failed to install it as dependency
+RUN pip3 install cffi>=1.0.0
 # Install a fork of spotify-ripper
 RUN pip3 install spotify-ripper-morgaroth
 
